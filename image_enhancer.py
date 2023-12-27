@@ -18,6 +18,7 @@ def create_directory(directory):
         os.makedirs(directory)
 
 # Create the output directory if it doesn't exist
+create_directory(root_path)
 create_directory(output_path)
 
 # Function to upload an image file

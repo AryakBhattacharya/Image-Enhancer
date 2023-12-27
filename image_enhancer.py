@@ -34,7 +34,6 @@ import streamlit as st
 import numpy as np
 from PIL import Image, ImageFilter
 from io import BytesIO
-from IPython.display import display, HTML, Image as IPImage
 from google.colab import files, drive
 
 # Connect to Google Drive

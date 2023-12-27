@@ -26,6 +26,9 @@ def enhance_image(img):
     img = cv2.GaussianBlur(img, (11, 11), 0)
 
     # Increase depixelation effect (adjust the interpolation method)
+    img = cv2.resize(img, (480, 480), interpolation=cv2.INTER_LINEAR)  # Resize to 480p
+
+    # Increase depixelation effect (adjust the interpolation method)
     img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_LINEAR)
 
     # Add sharpness and clarity

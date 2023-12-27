@@ -25,8 +25,11 @@ def enhance_image(img):
     # Increase deblurring effect (adjust the kernel size)
     img = cv2.GaussianBlur(img, (11, 11), 0)
 
-    # Increase depixelation effect (adjust the interpolation method)
-    img = cv2.resize(img, (480, 480), interpolation=cv2.INTER_LINEAR)  # Resize to 480p
+    # Reduce resolution while maintaining aspect ratio
+    new_width = 480
+    aspect_ratio = img.shape[1] / img.shape[0]
+    new_height = int(new_width / aspect_ratio)
+    img = cv2.resize(img, (new_width, new_height), interpolation=cv2.INTER_LINEAR)
 
     # Increase depixelation effect (adjust the interpolation method)
     img = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_LINEAR)

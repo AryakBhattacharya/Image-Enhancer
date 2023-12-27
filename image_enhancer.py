@@ -7,7 +7,7 @@ import os
 st.set_page_config(
     page_title="My Custom Streamlit App",
     page_icon=":smiley:",
-    layout="narrow",
+    layout="wide",
     initial_sidebar_state="expanded",
 )
 css = """

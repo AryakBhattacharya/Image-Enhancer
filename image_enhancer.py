@@ -35,11 +35,11 @@ from io import BytesIO
 from IPython.display import display, HTML, Image as IPImage
 from google.colab import files, drive
 
-# # Connect to Google Drive
-# drive.mount('/content/drive')
+# Connect to Google Drive
+drive.mount('/content/drive')
 
-# # Set the root path for saving images
-# root_path = '/content/drive/MyDrive/Colab Notebooks/Image Enhancing'
+# Set the root path for saving images
+root_path = '/content/drive/MyDrive/Colab Notebooks/Image Enhancing'
 
 # Create a new folder for saving images if it doesn't exist
 output_folder = 'Enhanced_Images'

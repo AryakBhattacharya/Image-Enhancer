@@ -6,7 +6,7 @@ import os
 
 # Custom styling for the header
 header_style = """
-    color: #f63366;
+    color: #ffffff;
     font-size: 2.5rem;
     font-weight: bold;
     text-align: center;

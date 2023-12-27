@@ -3,6 +3,12 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import os
+
+# Install gdown
+st.sidebar.text("Installing gdown...")
+st.sidebar.text("This may take a minute.")
+st.shell_command("pip install gdown")
+
 import gdown
 
 # Authenticate and mount Google Drive

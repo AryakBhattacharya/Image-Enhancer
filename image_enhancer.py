@@ -29,6 +29,7 @@
 # !pip install Pillow
 
 import cv2
+import os
 import numpy as np
 from PIL import Image, ImageFilter
 from io import BytesIO
@@ -44,7 +45,8 @@ root_path = '/content/drive/MyDrive/Colab Notebooks/Image Enhancing'
 # Create a new folder for saving images if it doesn't exist
 output_folder = 'Enhanced_Images'
 output_path = f'{root_path}/{output_folder}'
-!mkdir -p "$output_path"
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
 
 # Function to upload an image file
 def upload_image():

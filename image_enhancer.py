@@ -4,10 +4,16 @@ import numpy as np
 from PIL import Image
 import os
 
+import subprocess
+
+# Function to install a package using pip
+def install_package(package):
+    subprocess.run(["pip", "install", package])
+
 # Install gdown
 st.sidebar.text("Installing gdown...")
 st.sidebar.text("This may take a minute.")
-st.shell_command("pip install gdown")
+install_package("gdown")
 
 import gdown
 

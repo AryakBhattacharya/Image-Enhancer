@@ -30,6 +30,7 @@
 
 import cv2
 import os
+import streamlit as st
 import numpy as np
 from PIL import Image, ImageFilter
 from io import BytesIO
@@ -74,10 +75,7 @@ def enhance_image(input_image_path):
 
 # Function to display the enhanced image
 def display_image(image):
-    img_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-    img_byte_array = BytesIO()
-    img_pil.save(img_byte_array, format='PNG')
-    display(IPImage(data=img_byte_array.getvalue(), format='png'))
+    st.image(image, caption="Enhanced Image", use_column_width=True)
 
 # Function to save images
 def save_images(original_image, enhanced_image, output_path, image_name):
@@ -87,24 +85,26 @@ def save_images(original_image, enhanced_image, output_path, image_name):
     cv2.imwrite(original_path, original_image)
     cv2.imwrite(enhanced_path, enhanced_image)
 
-    print(f"Original image saved to: {original_path}")
-    print(f"Enhanced image saved to: {enhanced_path}")
+    st.success(f"Original image saved to: {original_path}")
+    st.success(f"Enhanced image saved to: {enhanced_path}")
 
 # Main program
 # Upload image
-image_path = upload_image()
+image = upload_image()
 
-if image_path:
+if image is not None:
+    # Read the image
+    image_path = f'{output_path}/uploaded_image.png'
+    img = Image.open(image)
+    img.save(image_path)
+
     # Enhance the image without resizing
     enhanced_image = enhance_image(image_path)
 
     # Display the original and enhanced images
-    print("Original Image:")
-    display(Image.open(image_path))
-
-    print("Enhanced Image:")
+    st.image(img, caption="Original Image", use_column_width=True)
     display_image(enhanced_image)
 
     # Save images to Google Drive
-    image_name = image_path.split('/')[-1].split('.')[0]
+    image_name = 'uploaded_image'
     save_images(cv2.imread(image_path), enhanced_image, output_path, image_name)

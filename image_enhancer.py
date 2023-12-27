@@ -7,13 +7,13 @@ import os
 st.set_page_config(
     page_title="My Custom Streamlit App",
     page_icon=":smiley:",
-    layout="wide",
+    layout="narrow",
     initial_sidebar_state="expanded",
 )
 css = """
 body {
     color: #333;
-    background-color: #f8f9fa;
+    background-color: #fff;
 }
 """
 st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
@@ -29,10 +29,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 with st.beta_container():
-    st.write("This is inside a container!")
+    st.write("Upload Image to Enhance")
 
-with st.beta_expander("Click me to expand"):
-    st.write("This is inside an expander!")
+# with st.beta_expander("Click me to expand"):
+#     st.write("This is inside an expander!")
 # st.set_theme("blue")
 
 

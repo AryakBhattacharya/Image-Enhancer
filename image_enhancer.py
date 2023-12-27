@@ -33,7 +33,7 @@ with st.beta_container():
 
 with st.beta_expander("Click me to expand"):
     st.write("This is inside an expander!")
-st.set_theme("light")
+st.set_theme("blue")
 
 
 # Function to enhance image quality without resizing

@@ -35,9 +35,6 @@ import numpy as np
 from PIL import Image, ImageFilter
 from io import BytesIO
 
-# Connect to Google Drive
-drive.mount('/content/drive')
-
 # Set the root path for saving images
 root_path = '/content/drive/MyDrive/Colab Notebooks/Image Enhancing'
 

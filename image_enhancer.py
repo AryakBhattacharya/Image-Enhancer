@@ -4,13 +4,18 @@ import numpy as np
 from PIL import Image
 import os
 
-st.set_page_config(
-    page_title="Image Enhancer",
-    page_header="Upload Image to Enhance"
-    page_icon=":smiley:",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
+# Custom styling for the header
+header_style = """
+    color: #f63366;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+"""
+
+# Add a styled header using markdown
+st.markdown("<p style='{}'>Upload Image to Enhance</p>".format(header_style), unsafe_allow_html=True)
+
 
 # Function to enhance image quality without resizing
 def enhance_image(img):

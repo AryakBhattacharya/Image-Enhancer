@@ -14,7 +14,7 @@ output_path = f'{root_path}/{output_folder}'
 
 # Function to create a directory if it doesn't exist
 def create_directory(directory):
-    if not os.path.exists(directory):
+    if not os.path.isdir(directory):
         os.makedirs(directory)
 
 # Create the output directory if it doesn't exist

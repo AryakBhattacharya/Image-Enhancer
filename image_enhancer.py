@@ -51,11 +51,10 @@ if not os.path.exists(output_path):
 
 # Function to upload an image file
 def upload_image():
-    uploaded = files.upload()
-    if len(uploaded) == 0:
-        return None
-    image_path = list(uploaded.keys())[0]
-    return image_path
+    uploaded = st.file_uploader("Choose a file", type=["jpg", "jpeg", "png"])
+    if uploaded is not None:
+        return uploaded
+    return None
 
 # Function to enhance image quality without resizing
 def enhance_image(input_image_path):

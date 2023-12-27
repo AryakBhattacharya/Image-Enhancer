@@ -34,7 +34,6 @@ import streamlit as st
 import numpy as np
 from PIL import Image, ImageFilter
 from io import BytesIO
-from google.colab import files, drive
 
 # Connect to Google Drive
 drive.mount('/content/drive')

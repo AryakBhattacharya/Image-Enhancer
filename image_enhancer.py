@@ -1,44 +1,8 @@
-import cv2
 import streamlit as st
+import cv2
 import numpy as np
 from PIL import Image
 import os
-
-import subprocess
-
-# Function to install a package using pip
-def install_package(package):
-    subprocess.run(["pip", "install", package])
-
-# Install gdown
-st.sidebar.text("Installing gdown...")
-st.sidebar.text("This may take a minute.")
-install_package("gdown")
-
-import gdown
-
-# Authenticate and mount Google Drive
-from google.colab import drive
-drive.mount('/content/drive')
-
-# Set the root path for saving images
-root_path = '/content/drive/MyDrive/Colab Notebooks/Image Enhancing'
-
-# Create a new folder for saving images if it doesn't exist
-output_folder = 'Enhanced_Images'
-output_path = f'{root_path}/{output_folder}'
-
-# Function to create a directory if it doesn't exist
-def create_directory(directory):
-    if not os.path.isdir(directory):
-        os.makedirs(directory)
-
-# Function to upload an image file
-def upload_image():
-    uploaded = st.file_uploader("Choose a file", type=["jpg", "jpeg", "png"])
-    if uploaded is not None:
-        return uploaded
-    return None
 
 # Function to enhance image quality without resizing
 def enhance_image(img):
@@ -56,43 +20,22 @@ def enhance_image(img):
 
     return img
 
-# Function to display the enhanced image
-def display_image(image):
-    st.image(image, caption="Enhanced Image", use_column_width=True)
-
-# Function to save images to Google Drive
-def save_images(original_image, enhanced_image, output_path, image_name):
-    original_path = f'{output_path}/{image_name}_original.png'
-    enhanced_path = f'{output_path}/{image_name}_enhanced.png'
-
-    cv2.imwrite(original_path, original_image)
-    cv2.imwrite(enhanced_path, enhanced_image)
-
-    st.success(f"Original image saved to: {original_path}")
-    st.success(f"Enhanced image saved to: {enhanced_path}")
+# Function to save images
+def save_images(original_image, enhanced_image):
+    # Save the enhanced image to the Streamlit cache directory
+    st.image(original_image, caption="Original Image", use_column_width=True)
+    st.image(enhanced_image, caption="Enhanced Image", use_column_width=True)
 
 # Main program
-# Authenticate and mount Google Drive
-from google.colab import drive
-drive.mount('/content/drive')
-
 # Upload image
-image = upload_image()
+image = st.file_uploader("Choose a file", type=["jpg", "jpeg", "png"])
 
 if image is not None:
-    # Save the uploaded image to Google Drive
-    image_name = 'uploaded_image'
-    uploaded_image_path = f'{output_path}/{image_name}.png'
-    with open(uploaded_image_path, 'wb') as f:
-        f.write(image.read())
+    # Read the image
+    img = Image.open(image)
 
     # Enhance the image without resizing
-    uploaded_image = Image.open(uploaded_image_path)
-    enhanced_image = enhance_image(uploaded_image)
+    enhanced_image = enhance_image(img)
 
     # Display the original and enhanced images
-    st.image(uploaded_image, caption="Original Image", use_column_width=True)
-    display_image(enhanced_image)
-
-    # Save images to Google Drive
-    save_images(np.array(uploaded_image), enhanced_image, output_path, image_name)
+    save_images(img, enhanced_image)

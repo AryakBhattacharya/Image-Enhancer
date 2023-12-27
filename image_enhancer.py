@@ -5,36 +5,12 @@ from PIL import Image
 import os
 
 st.set_page_config(
-    page_title="My Custom Streamlit App",
+    page_title="Image Enhancer",
+    page_header="Upload Image to Enhance"
     page_icon=":smiley:",
     layout="wide",
     initial_sidebar_state="expanded",
 )
-css = """
-body {
-    color: #333;
-    background-color: #fff;
-}
-"""
-st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
-st.markdown(
-    """
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-    body {
-        font-family: 'Roboto', sans-serif;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-with st.beta_container():
-    st.write("Upload Image to Enhance")
-
-# with st.beta_expander("Click me to expand"):
-#     st.write("This is inside an expander!")
-# st.set_theme("blue")
-
 
 # Function to enhance image quality without resizing
 def enhance_image(img):
